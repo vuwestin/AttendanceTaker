@@ -33,7 +33,10 @@ class attendanceGui(tk.Tk):
 			frame.grid(row = 0, column= 0, sticky = "nsew")
 
 	def show_frame(self, controller):
-		self.updateClassDb("attendance.txt")
+		if controller == attPage:
+			self.updateClassDb("attendance.txt")
+		elif controller == addStudentPage:
+			self.frames[addStudentPage].clearEntries()
 		frame = self.frames[controller]
 		frame.tkraise()
 		# self.window = Tk()
@@ -45,12 +48,16 @@ class attendanceGui(tk.Tk):
 		#call mainloop in main function. duh
 
 	def setDayAndWeek(self, week, day):
-		week = int(week)
-		day = int(day)
-		if (week > 0 and week < 16) and (week > 0 and week < 3):
-			self.currentWeek = str(week)
-			self.currentDay = str(day)
-			self.show_frame(attPage)
+		if week.isdigit() == False or day.isdigit() == False: #checks for bad input
+			invalidLabel = tk.Label(self.frames[StartPage], text = "Invalid Input")
+			invalidLabel.grid(row = 3, column = 1)
+		else:
+			week = int(week)
+			day = int(day)
+			if (week > 0 and week < 16) and (week > 0 and week < 3):
+				self.currentWeek = str(week)
+				self.currentDay = str(day)
+				self.show_frame(attPage)
 		#make attPage
 
 	def addStud(self, name, email, prof, sectionNum):
@@ -75,7 +82,7 @@ class attendanceGui(tk.Tk):
 
 	def updateClassDb(self, filename):
 		self.classDb.readDatabase(filename)
-		print("update")
+		#print("update")
 		# container = tk.Frame(self)
 		# container.pack(side = "top", fill = "both", expand = True)
 		# container.grid_rowconfigure(0, weight = 1)
@@ -117,6 +124,7 @@ class addStudentPage(tk.Frame):
 	def __init__(self,parent,controller):
 		tk.Frame.__init__(self, parent)
 
+		self.entryList = []
 		addLabel = tk.Label(self, text = "Enter the name of the student to add")
 		firstNameLabel = tk.Label(self, text = "First Name")
 		lastNameLabel = tk.Label(self, text = "Last Name")
@@ -125,10 +133,15 @@ class addStudentPage(tk.Frame):
 		sectionNumLabel = tk.Label(self, text = "Class Section Number")
 
 		firstNameEntry = tk.Entry(self, width = 10)
+		self.entryList.append(firstNameEntry)
 		lastNameEntry = tk.Entry(self, width = 10)
+		self.entryList.append(lastNameEntry)
 		emailEntry = tk.Entry(self, width = 15)
+		self.entryList.append(emailEntry)
 		profEntry = tk.Entry(self, width = 10)
+		self.entryList.append(profEntry)
 		sectionNumEntry = tk.Entry(self, width = 5)
+		self.entryList.append(sectionNumEntry)
 		
 
 		backButton = tk.Button(self, text = "Back", command = lambda: controller.show_frame(StartPage))
@@ -149,6 +162,11 @@ class addStudentPage(tk.Frame):
 
 		backButton.grid(row = 6, column = 0)
 		addButton.grid(row = 6, column = 1)
+
+	def clearEntries(self):
+		for entry in self.entryList:
+			entry.delete(0,"end")
+
 
 class attPage(tk.Frame):
 

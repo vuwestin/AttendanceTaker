@@ -60,7 +60,7 @@ class classDatabase:
 				self.dataBase = [] #clear database
 				for x in lines:
 					studentList = x.split("	") #split by commas
-					print(studentList)
+					#print(studentList)
 					newStud = Student(studentList[0], studentList[1],
 						studentList[2], studentList[3])
 					#daysList = studentList[6].split(",") #split by commas
