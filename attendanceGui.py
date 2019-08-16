@@ -180,13 +180,16 @@ class attPage(tk.Frame):
 			#OR NOT
 			#FIND OUT HOW TO TELL WHICH CHECKBOX GOT TICKED
 
+def stringCount(string,c):
+	count = 0
+	for x in string:
+		if c == x:
+			count = count + 1
+	return count
 
 def main():
 	p = attendanceGui()
 	p.mainloop()
-	# rock = {}
-	# rock[attendanceGui] = 3
-	# print(rock[attendanceGui])
 
 if __name__ == "__main__":
 	main()

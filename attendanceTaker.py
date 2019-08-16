@@ -44,7 +44,7 @@ class classDatabase:
 	def saveDatabase(self):
 		f = open("attendance.txt", "w+")
 		for x in self.dataBase:
-			writeStr = x.name + "	" + x.email + "	" + x.prof + "	" + x.sectionNum + "	" + str(len(x.daysPresent)) + "	" + str(len(x.daysPresent)) + "	"
+			writeStr = x.name + "," + x.email + "," + x.prof + "," + x.sectionNum + "," + str(len(x.daysPresent)) + "," + str(len(x.daysPresent)) + ","
 			for j in x.daysPresent:
 				writeStr = writeStr + str(j) + ","
 			writeStr = str(writeStr) + "\n"
@@ -59,12 +59,15 @@ class classDatabase:
 			if len(lines) > 0:
 				self.dataBase = [] #clear database
 				for x in lines:
-					studentList = x.split("	") #split by tabs
-					newStud = Student(studentList[0], studentList[1],
-						studentList[2], studentList[3])
-					daysList = studentList[6].split(",") #split by commas
-					for i in range(0,30):
-						newStud.daysPresent[i] = int(daysList[i])
+					studentList = x.split(",") #split by commas
+					print(studentList)
+					newStud = Student(studentList[0] + "," + studentList[1], studentList[2],
+						studentList[3], studentList[4])
+					#daysList = studentList[6].split(",") #split by commas
+					for i in range(0,30): #FIX THIS
+					#studentlist attendance is 7 to 36/37
+					#new student objects attendance is from 0 to 30
+						newStud.daysPresent[i] = int(studentList[i+7])
 					self.dataBase.append(newStud)
 			else:
 				self.database = []
