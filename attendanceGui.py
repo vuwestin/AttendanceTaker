@@ -40,7 +40,6 @@ class attendanceGui(tk.Tk):
 		frame = self.frames[controller]
 		frame.tkraise()
 		# self.window = Tk()
-		# self.window.title("title yeah baby")
 		# self.window.geometry("350x200")
 		# self.panel = Frame(self.window)
 		# self.panel.pack()
