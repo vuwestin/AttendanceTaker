@@ -44,7 +44,6 @@ class attendanceGui(tk.Tk):
 		# self.panel = Frame(self.window)
 		# self.panel.pack()
 		# self.window.mainloop()	
-		#call mainloop in main function. duh
 
 	def setDayAndWeek(self, week, day):
 		if week.isdigit() == False or day.isdigit() == False: #checks for bad input
@@ -63,7 +62,6 @@ class attendanceGui(tk.Tk):
 		self.classDb.addStudent(Student(name, email, prof, sectionNum))
 		self.classDb.saveDatabase()
 		self.show_frame(StartPage)
-		#added students not showing in attpage
 
 	def saveClassDb(self, checkBoxList):
 		presentList = []
@@ -111,12 +109,9 @@ class StartPage(tk.Frame):
 		button1 = tk.Button(self, text = "Continue", command = lambda: controller.setDayAndWeek(entry1.get(), dayEntry.get()))
 		button1.grid(row = 3, column = 2)
 
-		#add an addstudent button
 		addButton = tk.Button(self,text = "Add Student", command = lambda: controller.show_frame(addStudentPage))
 		addButton.grid(row = 3, column = 0)
 
-		#button1.grid_forget()
-		#grid_forget removes stuff
 
 class addStudentPage(tk.Frame):
 
@@ -193,9 +188,7 @@ class attPage(tk.Frame):
 		backButton = tk.Button(self, text = "Back", command = lambda: controller.show_frame(StartPage))
 		backButton.grid(row = self.studentCounter, column = 0)
 		saveButton.grid(row = self.studentCounter, column = 3)
-			#REDO THIS SO THAT ITS ONLY ONE CHECKBOX NEXT TO THE NAME FOR HERE
-			#OR NOT
-			#FIND OUT HOW TO TELL WHICH CHECKBOX GOT TICKED
+
 
 def stringCount(string,c):
 	count = 0
