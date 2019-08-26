@@ -64,7 +64,7 @@ class classDatabase:
 					newStud = Student(studentList[0], studentList[1],
 						studentList[2], studentList[3])
 					#daysList = studentList[6].split(",") #split by commas
-					for i in range(0,30): #FIX THIS
+					for i in range(0,30): 
 					#studentlist attendance is 7 to 36/37
 					#new student objects attendance is from 0 to 30
 						newStud.daysPresent[i] = int(studentList[i+6])
@@ -75,38 +75,4 @@ class classDatabase:
 			self.database = []
 
 			
-
-
-
-#def main():
-	# db = classDatabase("dummy", "dummy1", "dummy2", "dummy3")
-	# # w = Student("Westin", "Vu", "vuwee", "pee", "poo")
-	# # #db.addStudent(w)
-	# # w.addDay(1,2)
-	# # db.readDatabase("attendance.txt")
-	# # db.printAllStudents()
-	# m = Tk(className = ' Attendance Taker')
-	# panel = Frame(m)
-	# panel.pack()
-	# button1 = Button(panel, text = "yeeyeeyee", bg = "red", fg = "red")
-	# #label1 = Label(panel, bg = "green", fg = "black")
-	# #label1.pack()
-	# weekEntry = Entry(panel, width = 5)
-	# weekEntry.pack()
-	# button1.pack()
-
-	# #m.title('Attendance Taker')
-	# m.mainloop()
-
-
-
-
-
-
-
-
-
-# if __name__ == "__main__":
-# 	main()
-
 
