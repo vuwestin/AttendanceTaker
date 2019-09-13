@@ -33,6 +33,7 @@ class attendanceGui(tk.Tk):
 			frame.grid(row = 0, column= 0, sticky = "nsew")
 
 	def show_frame(self, controller):
+		#print("hi")
 		if controller == attPage:
 			self.updateClassDb("attendance.txt")
 		elif controller == addStudentPage:
@@ -40,19 +41,22 @@ class attendanceGui(tk.Tk):
 		frame = self.frames[controller]
 		frame.tkraise()
 		# self.window = Tk()
+		# self.window.title("title yeah baby")
 		# self.window.geometry("350x200")
 		# self.panel = Frame(self.window)
 		# self.panel.pack()
 		# self.window.mainloop()	
+		#call mainloop in main function. duh
 
 	def setDayAndWeek(self, week, day):
+		#print("hi")
 		if week.isdigit() == False or day.isdigit() == False: #checks for bad input
 			invalidLabel = tk.Label(self.frames[StartPage], text = "Invalid Input")
 			invalidLabel.grid(row = 3, column = 1)
 		else:
 			week = int(week)
 			day = int(day)
-			if (week > 0 and week < 16) and (week > 0 and week < 3):
+			if (week > 0 and week < 16) and (day > 0 and day < 3):
 				self.currentWeek = str(week)
 				self.currentDay = str(day)
 				self.show_frame(attPage)
@@ -62,6 +66,7 @@ class attendanceGui(tk.Tk):
 		self.classDb.addStudent(Student(name, email, prof, sectionNum))
 		self.classDb.saveDatabase()
 		self.show_frame(StartPage)
+		#added students not showing in attpage
 
 	def saveClassDb(self, checkBoxList):
 		presentList = []
@@ -109,9 +114,12 @@ class StartPage(tk.Frame):
 		button1 = tk.Button(self, text = "Continue", command = lambda: controller.setDayAndWeek(entry1.get(), dayEntry.get()))
 		button1.grid(row = 3, column = 2)
 
+		#add an addstudent button
 		addButton = tk.Button(self,text = "Add Student", command = lambda: controller.show_frame(addStudentPage))
 		addButton.grid(row = 3, column = 0)
 
+		#button1.grid_forget()
+		#grid_forget removes stuff
 
 class addStudentPage(tk.Frame):
 
@@ -188,7 +196,9 @@ class attPage(tk.Frame):
 		backButton = tk.Button(self, text = "Back", command = lambda: controller.show_frame(StartPage))
 		backButton.grid(row = self.studentCounter, column = 0)
 		saveButton.grid(row = self.studentCounter, column = 3)
-
+			#REDO THIS SO THAT ITS ONLY ONE CHECKBOX NEXT TO THE NAME FOR HERE
+			#OR NOT
+			#FIND OUT HOW TO TELL WHICH CHECKBOX GOT TICKED
 
 def stringCount(string,c):
 	count = 0
